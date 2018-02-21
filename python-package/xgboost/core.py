@@ -611,12 +611,13 @@ class DMatrix(object):
         res : DMatrix
             A new DMatrix containing only selected indices.
         """
-        res = DMatrix(None, feature_names=self.feature_names)
+        res = DMatrix(None)
         res.handle = ctypes.c_void_p()
         _check_call(_LIB.XGDMatrixSliceDMatrix(self.handle,
                                                c_array(ctypes.c_int, rindex),
                                                c_bst_ulong(len(rindex)),
                                                ctypes.byref(res.handle)))
+        res.feature_names=self.feature_names
         return res
 
     @property
