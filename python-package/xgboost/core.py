@@ -257,6 +257,7 @@ class DMatrix(object):
         feature_types : list, optional
             Set types for features.
         """
+        self.feature_names = feature_names
         # force into void_p, mac need to pass things in as void_p
         if data is None:
             self.handle = None
@@ -295,7 +296,6 @@ class DMatrix(object):
             else:
                 self.set_weight(weight)
 
-        self.feature_names = feature_names
         self.feature_types = feature_types
 
     def _init_from_csr(self, csr):
